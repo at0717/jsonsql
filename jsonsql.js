@@ -1,24 +1,3 @@
-/*
- * JsonSQL
- * By: Trent Richardson [http://trentrichardson.com]
- * Version 0.1
- * Last Modified: 1/1/2008
- * 
- * Copyright 2008 Trent Richardson
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 var jsonsql = {
 		
 	query: function(sql,json){
@@ -28,10 +7,10 @@ var jsonsql = {
 		var ops = { 
 			fields: returnfields[2].replace(' ','').split(','), 
 			from: returnfields[3].replace(' ',''), 
-			where: (returnfields[4] == undefined)? "true":returnfields[4],
-			orderby: (returnfields[5] == undefined)? []:returnfields[5].replace(' ','').split(','),
-			order: (returnfields[6] == undefined)? "asc":returnfields[6],
-			limit: (returnfields[7] == undefined)? []:returnfields[7].replace(' ','').split(',')
+			where: (returnfields[4] == undefined || returnfields[4] == '')? "true":returnfields[4],
+			orderby: (returnfields[5] == undefined || returnfields[5] == '') ? [] : returnfields[5].replace(' ', '').split(','),
+			order: (returnfields[6] == undefined || returnfields[6] == '') ? "asc" : returnfields[6],
+			limit: (returnfields[7] == undefined || returnfields[7] == '') ? [] : returnfields[7].replace(' ', '').split(',')
 		};
 
 		return this.parse(json, ops);		
